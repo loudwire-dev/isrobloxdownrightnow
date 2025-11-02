@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Is Roblox Down Right Now? | Live Status 2025</title>
+  <meta name="description" content="Real-time Roblox server status. Is Roblox down or up? Check outages, login issues, and maintenance instantly." />
+  <style>
+    body{font-family:Arial;background:#000;color:#fff;margin:0;padding:20px;text-align:center;}
+    h1{color:#00d4ff;font-size:28px;}
+    .status{font-size:62px;margin:40px 0;font-weight:bold;}
+    .up{color:#00ff00;}
+    .down{color:#ff0033;}
+    #details{font-size:18px;margin:20px 0;}
+    #ads{margin:40px 0;}
+    .reload{font-size:14px;color:#aaa;}
+  </style>
+</head>
+<body>
+  <h1>Is Roblox Down Right Now?</h1>
+  <div class="status" id="status">Checking servers...</div>
+  <p id="details"></p>
+  <div id="ads">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle" style="display:block" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <p class="reload">Auto-refreshes every 60 seconds</p>
+
+  <script>
+    const api = "https://api.downornot.workers.dev/?service=roblox";
+    function check() {
+      fetch(api + "&t=" + Date.now())
+        .then(r => r.json())
+        .then(d => {
+          const s = document.getElementById("status");
+          const det = document.getElementById("details");
+          if (d.status === "up") {
+            s.innerHTML = "ROBLOX IS UP";
+            s.className = "status up";
+            det.innerHTML = "All servers operational • <a href='https://status.roblox.com' style='color:#00d4ff'>Official Status</a>";
+          } else {
+            s.innerHTML = "ROBLOX IS DOWN";
+            s.className = "status down";
+            det.innerHTML = `Outage detected • ${d.response_time}ms • <a href='https://status.roblox.com' style='color:#ff0033'>Check Official</a>`;
+          }
+        })
+        .catch(() => s.innerHTML = "Checking...");
+    }
+    check();
+    setInterval(check, 60000);
+  </script>
+</body>
+</html>
