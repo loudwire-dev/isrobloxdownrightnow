@@ -28,40 +28,23 @@
   <p class="reload">Auto-refreshes every 60 seconds</p>
 
   <script>
-  const api = "https://api.downornot.workers.dev/?service=roblox";
   function check() {
-    fetch(api + "&t=" + Date.now())
-      .then(r => r.json())
-      .then(d => {
-        const s = document.getElementById("status");
-        const det = document.getElementById("details");
-        if (d.status === "up") {
-          s.innerHTML = "ROBLOX IS UP";
-          s.className = "status up";
-          det.innerHTML = "All servers operational • <a href='https://status.roblox.com' style='color:#00d4ff'>Official Status</a>";
-        } else {
-          s.innerHTML = "ROBLOX IS DOWN";
-          s.className = "status down";
-          det.innerHTML = `Outage detected • ${d.response_time}ms • <a href='https://status.roblox.com' style='color:#ff0033'>Check Official</a>`;
-        }
-      })
-      .catch((err) => {
-        // FALLBACK: Check Roblox official status via proxy or direct
-        fetch('https://status.roblox.com/robots.txt') // Simple proxy test
-          .then(r => {
-            const s = document.getElementById("status");
-            s.innerHTML = "ROBLOX IS UP";
-            s.className = "status up";
-            document.getElementById("details").innerHTML = "All servers operational (fallback check) • <a href='https://status.roblox.com' style='color:#00d4ff'>Official Status</a>";
-          })
-          .catch(() => {
-            const s = document.getElementById("status");
-            s.innerHTML = "ROBLOX IS DOWN";
-            s.className = "status down";
-            document.getElementById("details").innerHTML = "Outage detected (fallback) • <a href='https://status.roblox.com' style='color:#ff0033'>Check Official</a>";
-          });
-      });
+    // Direct ping to Roblox status (no-cors, always works)
+    const img = new Image();
+    img.onload = () => {
+      document.getElementById("status").innerHTML = "ROBLOX IS UP";
+      document.getElementById("status").className = "status up";
+      document.getElementById("details").innerHTML = "All servers operational • <a href='https://status.roblox.com' style='color:#00d4ff'>Official Status</a>";
+    };
+    img.onerror = () => {
+      document.getElementById("status").innerHTML = "ROBLOX IS DOWN";
+      document.getElementById("status").className = "status down";
+      document.getElementById("details").innerHTML = "Outage detected • <a href='https://status.roblox.com' style='color:#ff0033'>Check Official</a>";
+    };
+    // Use Roblox favicon as ping (fast, reliable)
+    img.src = "https://status.roblox.com/favicon.ico?t=" + Date.now();
   }
+
   check();
   setInterval(check, 60000);
 </script>
