@@ -5,50 +5,159 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Is Roblox Down Right Now? | Live Status 2025</title>
   <meta name="description" content="Real-time Roblox server status. Is Roblox down or up? Check outages, login issues, and maintenance instantly." />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" href="https://status.roblox.com/favicon.ico" />
   <style>
-    body{font-family:Arial;background:#000;color:#fff;margin:0;padding:20px;text-align:center;}
-    h1{color:#00d4ff;font-size:28px;}
-    .status{font-size:62px;margin:40px 0;font-weight:bold;}
-    .up{color:#00ff00;}
-    .down{color:#ff0033;}
-    #details{font-size:18px;margin:20px 0;}
-    #ads{margin:40px 0;}
-    .reload{font-size:14px;color:#aaa;}
+    :root {
+      --roblox-blue: #00d4ff;
+      --roblox-green: #00ff00;
+      --roblox-red: #ff0033;
+      --bg: #000;
+      --text: #fff;
+    }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #333;
+      border-radius: 12px;
+      background: rgba(20, 20, 20, 0.8);
+    }
+    h1 {
+      color: var(--roblox-blue);
+      font-size: 32px;
+      margin: 0 0 20px;
+    }
+    .status {
+      font-size: 68px;
+      font-weight: bold;
+      margin: 30px 0;
+      text-shadow: 0 0 10px;
+    }
+    .up { color: var(--roblox-green); }
+    .down { color: var(--roblox-red); }
+    #details {
+      font-size: 20px;
+      margin: 20px 0;
+    }
+    .ad-unit {
+      margin: 40px auto;
+      max-width: 728px;
+    }
+    .reload {
+      font-size: 14px;
+      color: #aaa;
+      margin: 20px 0;
+    }
+    .disclaimer {
+      font-size: 13px;
+      color: #888;
+      margin: 30px 0 10px;
+    }
+    footer {
+      margin-top: 50px;
+      font-size: 12px;
+      color: #666;
+    }
+    a { color: var(--roblox-blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    @media (max-width: 600px) {
+      .status { font-size: 48px; }
+      h1 { font-size: 26px; }
+    }
   </style>
 </head>
 <body>
-  <h1>Is Roblox Down Right Now?</h1>
-  <div class="status" id="status">Checking servers...</div>
-  <p id="details"></p>
-  <p>We Are Not An Entity Or Affiliate Of Roblox</p>
-  <div id="ads">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5533676923928386"
-     crossorigin="anonymous"></script>
-    <ins class="adsbygoogle" style="display:block" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <div class="container">
+    <h1>Is Roblox Down Right Now?</h1>
+
+    <!-- AD 1: TOP BANNER -->
+    <div class="ad-unit">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5533676923928386"
+           crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5533676923928386"
+           data-ad-slot="TOP_BANNER_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    <div class="status" id="status">Checking servers...</div>
+    <p id="details"></p>
+
+    <!-- AD 2: MIDDLE -->
+    <div class="ad-unit">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5533676923928386"
+           crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5533676923928386"
+           data-ad-slot="MIDDLE_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    <p class="reload">Auto-refreshes every 60 seconds</p>
+
+    <!-- AD 3: BOTTOM -->
+    <div class="ad-unit">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5533676923928386"
+           crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5533676923928386"
+           data-ad-slot="BOTTOM_SLOT_ID"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    <p class="disclaimer">
+      <strong>We Are Not An Entity Or Affiliate Of Roblox Corporation.</strong><br>
+      This is an independent status checker using public data.
+    </p>
+
+    <footer>
+      © 2025 IsRobloxDownRightNow.com | <a href="https://status.roblox.com" target="_blank">Official Roblox Status</a>
+    </footer>
   </div>
-  <p class="reload">Auto-refreshes every 60 seconds</p>
 
   <script>
-  function check() {
-    // Direct ping to Roblox status (no-cors, always works)
-    const img = new Image();
-    img.onload = () => {
-      document.getElementById("status").innerHTML = "ROBLOX IS UP";
-      document.getElementById("status").className = "status up";
-      document.getElementById("details").innerHTML = "All servers operational • <a href='https://status.roblox.com' style='color:#00d4ff'>Official Status</a>";
-    };
-    img.onerror = () => {
-      document.getElementById("status").innerHTML = "ROBLOX IS DOWN";
-      document.getElementById("status").className = "status down";
-      document.getElementById("details").innerHTML = "Outage detected • <a href='https://status.roblox.com' style='color:#ff0033'>Check Official</a>";
-    };
-    // Use Roblox favicon as ping (fast, reliable)
-    img.src = "https://status.roblox.com/favicon.ico?t=" + Date.now();
-  }
+    function check() {
+      const img = new Image();
+      img.onload = () => {
+        document.getElementById("status").innerHTML = "ROBLOX IS UP";
+        document.getElementById("status").className = "status up";
+        document.getElementById("details").innerHTML = "All servers operational • <a href='https://status.roblox.com' target='_blank'>Official Status</a>";
+      };
+      img.onerror = () => {
+        document.getElementById("status").innerHTML = "ROBLOX IS DOWN";
+        document.getElementById("status").className = "status down";
+        document.getElementById("details").innerHTML = "Outage detected • <a href='https://status.roblox.com' target='_blank'>Check Official</a>";
+      };
+      img.src = "https://status.roblox.com/favicon.ico?t=" + Date.now();
+    }
 
-  check();
-  setInterval(check, 60000);
-</script>
+    check();
+    setInterval(check, 60000);
+  </script>
 </body>
 </html>
