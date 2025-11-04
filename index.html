@@ -14,6 +14,8 @@
       --roblox-red: #ff0033;
       --bg: #000;
       --text: #fff;
+      --modal-bg: rgba(0, 0, 0, 0.85);
+      --modal-content: #111;
     }
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
@@ -23,6 +25,7 @@
       padding: 20px;
       text-align: center;
       line-height: 1.6;
+      overflow-x: hidden;
     }
     .container {
       max-width: 800px;
@@ -31,6 +34,8 @@
       border: 1px solid #333;
       border-radius: 12px;
       background: rgba(20, 20, 20, 0.8);
+      position: relative;
+      z-index: 1;
     }
     h1 {
       color: var(--roblox-blue);
@@ -70,9 +75,121 @@
     }
     a { color: var(--roblox-blue); text-decoration: none; }
     a:hover { text-decoration: underline; }
+
+    /* === AD BLOCKER MODAL === */
+    #adblock-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--modal-bg);
+      backdrop-filter: blur(5px);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      animation: fadeIn 0.4s ease-out;
+    }
+    .modal-content {
+      background: var(--modal-content);
+      border: 1px solid #444;
+      border-radius: 16px;
+      max-width: 500px;
+      width: 100%;
+      padding: 30px 25px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 24px;
+      color: #aaa;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+    .modal-close:hover {
+      background: #333;
+      color: #fff;
+    }
+    .modal-icon {
+      font-size: 48px;
+      color: var(--roblox-blue);
+      margin-bottom: 15px;
+    }
+    .modal-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 15px 0;
+      color: #fff;
+    }
+    .modal-text {
+      font-size: 16px;
+      color: #ddd;
+      margin: 15px 0;
+      line-height: 1.7;
+    }
+    .modal-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      flex: 1;
+      min-width: 140px;
+    }
+    .btn-primary {
+      background: var(--roblox-blue);
+      color: #000;
+    }
+    .btn-primary:hover {
+      background: #00b8e6;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: #333;
+      color: #fff;
+      border: 1px solid #555;
+    }
+    .btn-secondary:hover {
+      background: #444;
+    }
+    .how-to {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+    .how-to img {
+      width: 24px;
+      vertical-align: middle;
+      margin: 0 4px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     @media (max-width: 600px) {
       .status { font-size: 48px; }
       h1 { font-size: 26px; }
+      .modal-content { padding: 20px; }
+      .modal-title { font-size: 20px; }
+      .modal-buttons { flex-direction: column; }
     }
   </style>
 </head>
@@ -134,13 +251,37 @@
       <strong>We Are Not An Entity Or Affiliate Of Roblox Corporation.</strong><br>
       This is an independent status checker using public data.
     </p>
-
     <footer>
       © 2025 IsRobloxDownRightNow.com | <a href="https://status.roblox.com" target="_blank">Official Roblox Status</a>
     </footer>
   </div>
 
+  <!-- === AD BLOCKER DETECTION MODAL === -->
+  <div id="adblock-modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeAdblockModal()">&times;</span>
+      <div class="modal-icon">Shield</div>
+      <div class="modal-title">Please Support Our Site</div>
+      <div class="modal-text">
+        We noticed you're using an ad blocker. This site is <strong>100% free</strong> and funded by ads.<br><br>
+        <strong>Can you disable it or whitelist us?</strong> It only takes 10 seconds!
+      </div>
+      <div class="modal-buttons">
+        <div class="btn btn-primary" onclick="window.location.reload()">
+          Refresh After Disabling
+        </div>
+        <div class="btn btn-secondary" onclick="closeAdblockModal()">
+          Maybe Later
+        </div>
+      </div>
+      <div class="how-to">
+        <strong>How?</strong> Click the <img src="https://img.icons8.com/small/16/ffffff/shield.png" alt="shield"> icon in your browser → "Pause on this site"
+      </div>
+    </div>
+  </div>
+
   <script>
+    // Roblox status checker
     function check() {
       const img = new Image();
       img.onload = () => {
@@ -155,9 +296,54 @@
       };
       img.src = "https://status.roblox.com/favicon.ico?t=" + Date.now();
     }
-
     check();
     setInterval(check, 60000);
+
+    // === AD BLOCKER DETECTION ===
+    let adBlockDetected = false;
+
+    function detectAdBlock() {
+      const testAd = document.createElement('div');
+      testAd.innerHTML = '&nbsp;';
+      testAd.className = 'adsbygoogle';
+      testAd.style.position = 'absolute';
+      testAd.style.opacity = '0';
+      testAd.style.pointerEvents = 'none';
+      document.body.appendChild(testAd);
+
+      setTimeout(() => {
+        // If height is 0 → blocked
+        if (testAd.offsetHeight === 0) {
+          adBlockDetected = true;
+          showAdblockModal();
+        } else {
+          adBlockDetected = false;
+        }
+        document.body.removeChild(testAd);
+      }, 100);
+    }
+
+    function showAdblockModal() {
+      const modal = document.getElementById('adblock-modal');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function closeAdblockModal() {
+      const modal = document.getElementById('adblock-modal');
+      if (modal) modal.style.display = 'none';
+    }
+
+    // Run detection after page load
+    window.onload = function() {
+      setTimeout(detectAdBlock, 1500); // Wait for ads to attempt loading
+
+      // Optional: Re-check every 10 seconds in case user disables later
+      setInterval(() => {
+        if (adBlockDetected && document.querySelector('.adsbygoogle')?.offsetHeight > 0) {
+          closeAdblockModal();
+        }
+      }, 10000);
+    };
   </script>
 </body>
 </html>
