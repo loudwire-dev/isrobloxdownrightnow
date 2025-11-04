@@ -37,10 +37,30 @@
       position: relative;
       z-index: 1;
     }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
     h1 {
       color: var(--roblox-blue);
       font-size: 32px;
-      margin: 0 0 20px;
+      margin: 0;
+      flex: 1;
+      min-width: 280px;
+    }
+    .bookmark-btn {
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--roblox-blue);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .bookmark-btn:hover {
+      text-decoration: underline;
     }
     .status {
       font-size: 68px;
@@ -62,6 +82,34 @@
       font-size: 14px;
       color: #aaa;
       margin: 20px 0;
+    }
+    .support-section {
+      margin: 30px 0;
+      padding: 20px;
+      background: rgba(255, 95, 95, 0.1);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 95, 95, 0.3);
+    }
+    .support-text {
+      font-size: 17px;
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+    .bmc-button {
+      display: inline-block;
+      background: #FF5F5F;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 17px;
+      box-shadow: 0 6px 16px rgba(255,95,95,0.4);
+      transition: 0.3s;
+    }
+    .bmc-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255,95,95,0.5);
     }
     .disclaimer {
       font-size: 13px;
@@ -178,7 +226,6 @@
       vertical-align: middle;
       margin: 0 4px;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -187,6 +234,8 @@
     @media (max-width: 600px) {
       .status { font-size: 48px; }
       h1 { font-size: 26px; }
+      .header { flex-direction: column; text-align: center; }
+      .bookmark-btn { font-size: 16px; }
       .modal-content { padding: 20px; }
       .modal-title { font-size: 20px; }
       .modal-buttons { flex-direction: column; }
@@ -195,7 +244,13 @@
 </head>
 <body>
   <div class="container">
-    <h1>Is Roblox Down Right Now?</h1>
+    <!-- HEADER WITH TITLE + BOOKMARK -->
+    <div class="header">
+      <h1>Is Roblox Down Right Now?</h1>
+      <a href="#" id="bookmark-link" class="bookmark-btn" onclick="bookmarkSite(); return false;">
+        ★ Bookmark This Page
+      </a>
+    </div>
 
     <!-- AD 1: TOP BANNER -->
     <div class="ad-unit">
@@ -214,18 +269,17 @@
 
     <div class="status" id="status">Checking servers...</div>
     <p id="details"></p>
-    <!-- BUY ME A COFFEE BUTTON -->
-    <div class="modal-text">
-      Ads blocked? No problem! <strong>Support us directly:</strong>
-    </div>
-    <div style="text-align:center; margin:30px 0;">
-      <a href="https://buymeacoffee.com/isrobloxdownnow" target="_blank" 
-         style="display:inline-block; background:#FF5F5F; color:white; padding:12px 24px; 
-            border-radius:8px; font-weight:bold; text-decoration:none; font-size:16px;
-            box-shadow:0 4px 12px rgba(255,95,95,0.3);">
-          ☕ Buy Us a Coffee to Keep This Free
+
+    <!-- SUPPORT SECTION -->
+    <div class="support-section">
+      <div class="support-text">
+        Keep this Roblox checker <strong>free & fast</strong>?
+      </div>
+      <a href="https://buymeacoffee.com/isrobloxdownnow" target="_blank" class="bmc-button">
+        ☕ Buy Us a Coffee ($3)
       </a>
     </div>
+
     <!-- AD 2: MIDDLE -->
     <div class="ad-unit">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5533676923928386"
@@ -270,7 +324,7 @@
   <!-- === AD BLOCKER DETECTION MODAL === -->
   <div id="adblock-modal">
     <div class="modal-content">
-      <span class="modal-close" onclick="closeAdblockModal()">&times;</span>
+      <span class="modal-close" onclick="closeAdblockModal()">×</span>
       <div class="modal-icon">Shield</div>
       <div class="modal-title">Please Support Our Site</div>
       <div class="modal-text">
@@ -285,6 +339,15 @@
           Maybe Later
         </div>
       </div>
+      <div style="margin:20px 0; font-size:16px; color:#fff;">
+        <strong>Or support us directly:</strong>
+      </div>
+      <a href="https://buymeacoffee.com/isrobloxdownnow" target="_blank"
+         style="display:inline-block; background:#FF5F5F; color:white; padding:12px 24px;
+                border-radius:8px; font-weight:bold; text-decoration:none; font-size:16px;
+                box-shadow:0 4px 12px rgba(255,95,95,0.3);">
+        ☕ Buy Us a Coffee ($3)
+      </a>
       <div class="how-to">
         <strong>How?</strong> Click the <img src="https://img.icons8.com/small/16/ffffff/shield.png" alt="shield"> icon in your browser → "Pause on this site"
       </div>
@@ -310,6 +373,42 @@
     check();
     setInterval(check, 60000);
 
+    // === BOOKMARK FUNCTION ===
+    function bookmarkSite() {
+      const title = document.title;
+      const url = window.location.href;
+
+      if (window.sidebar && window.sidebar.addPanel) { // Firefox old
+        window.sidebar.addPanel(title, url, '');
+      } 
+      else if (window.external && ('AddFavorite' in window.external)) { // IE/Edge
+        window.external.AddFavorite(url, title);
+      } 
+      else if (window.opera && window.print) { // Opera
+        const elem = document.createElement('a');
+        elem.setAttribute('href', url);
+        elem.setAttribute('title', title);
+        elem.setAttribute('rel', 'sidebar');
+        elem.click();
+      } 
+      else if (navigator.userAgent.toLowerCase().indexOf('mac') !== -1 && window.sidebar) {
+        alert('Press Cmd+D to bookmark this page.');
+      } 
+      else if (navigator.share) {
+        navigator.share({ title, url }).catch(() => {
+          alert('Tap the ★ in your browser menu to save!');
+        });
+      } 
+      else {
+        alert('Press Ctrl+D (Cmd+D on Mac) to bookmark this page!');
+      }
+    }
+
+    // Mobile: Change bookmark text
+    if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      document.getElementById('bookmark-link').innerHTML = '★ Save for Later';
+    }
+
     // === AD BLOCKER DETECTION ===
     let adBlockDetected = false;
 
@@ -323,12 +422,9 @@
       document.body.appendChild(testAd);
 
       setTimeout(() => {
-        // If height is 0 → blocked
         if (testAd.offsetHeight === 0) {
           adBlockDetected = true;
           showAdblockModal();
-        } else {
-          adBlockDetected = false;
         }
         document.body.removeChild(testAd);
       }, 100);
@@ -344,11 +440,10 @@
       if (modal) modal.style.display = 'none';
     }
 
-    // Run detection after page load
+    // Run detection after load
     window.onload = function() {
-      setTimeout(detectAdBlock, 1500); // Wait for ads to attempt loading
+      setTimeout(detectAdBlock, 1500);
 
-      // Optional: Re-check every 10 seconds in case user disables later
       setInterval(() => {
         if (adBlockDetected && document.querySelector('.adsbygoogle')?.offsetHeight > 0) {
           closeAdblockModal();
