@@ -9,11 +9,15 @@
 
 <link rel="icon" href="https://status.roblox.com/favicon.ico" />
 
+<!-- ✅ LOAD ADSENSE ONCE ONLY -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5533676923928386"
+crossorigin="anonymous"></script>
+
 <style>
 :root {
   --blue:#00d4ff;
-  --green:#00ff88;
-  --red:#ff3355;
+  --green:#4cff9a;
+  --red:#ff4d6d;
   --bg:#000;
   --panel:#111;
   --text:#fff;
@@ -46,20 +50,22 @@ h1 {
   font-size:64px;
   font-weight:bold;
   margin:30px 0;
+  letter-spacing:2px;
 }
 
+/* ✅ FIXED GLOW */
 .up {
-  color: #4cff9a; /* softer green */
+  color: var(--green);
   text-shadow:
-    0 0 4px rgba(76, 255, 154, 0.6),
-    0 0 10px rgba(76, 255, 154, 0.4);
+    0 0 4px rgba(76,255,154,0.6),
+    0 0 10px rgba(76,255,154,0.4);
 }
 
 .down {
-  color: #ff4d6d; /* softer red */
+  color: var(--red);
   text-shadow:
-    0 0 4px rgba(255, 77, 109, 0.6),
-    0 0 10px rgba(255, 77, 109, 0.4);
+    0 0 4px rgba(255,77,109,0.6),
+    0 0 10px rgba(255,77,109,0.4);
 }
 
 .meta {
@@ -68,10 +74,6 @@ h1 {
 }
 
 /* ACCORDION */
-.accordion {
-  margin-top:30px;
-}
-
 .accordion-item {
   border:1px solid #333;
   border-radius:10px;
@@ -79,7 +81,6 @@ h1 {
   overflow:hidden;
 }
 
-/* UPDATED HEADER WITH ARROW */
 .accordion-header {
   display:flex;
   justify-content:space-between;
@@ -89,21 +90,13 @@ h1 {
   cursor:pointer;
   font-weight:bold;
   color:var(--blue);
-  transition:0.2s;
 }
 
-.accordion-header:hover {
-  background:#222;
-}
-
-/* ARROW */
 .accordion-header::after {
   content:"▼";
-  font-size:14px;
-  transition:transform 0.3s ease;
+  transition:0.3s;
 }
 
-/* ROTATE WHEN OPEN */
 .accordion-header.active::after {
   transform:rotate(180deg);
 }
@@ -115,13 +108,9 @@ h1 {
   padding:0 15px;
 }
 
-.accordion-content p,
-.accordion-content ul {
-  margin:15px 0;
-}
-
 .accordion-content ul {
   padding-left:20px;
+  margin:15px 0;
 }
 
 /* BUTTONS */
@@ -139,6 +128,10 @@ h1 {
 
 .center { text-align:center; }
 
+.ad-unit {
+  margin:25px 0;
+}
+
 footer {
   text-align:center;
   margin-top:40px;
@@ -147,7 +140,6 @@ footer {
 }
 
 a { color:var(--blue); }
-
 </style>
 </head>
 
@@ -162,23 +154,32 @@ a { color:var(--blue); }
   </a>
 </div>
 
+<!-- ✅ TOP AD -->
+<div class="ad-unit">
+  <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-5533676923928386"
+    data-ad-slot="TOP_BANNER_SLOT_ID"
+    data-ad-format="auto"
+    data-full-width-responsive="true"></ins>
+</div>
+
 <div id="status" class="status">Checking...</div>
 <div id="details" class="meta"></div>
 <div id="lastChecked" class="meta"></div>
 
 <div class="center">
   <a href="https://buymeacoffee.com/isrobloxdownnow" target="_blank" class="button bmc">
-    ☕ Keep This Site Free
+    ☕ Support This Site
   </a>
 </div>
 
-<!-- ACCORDION CONTENT -->
+<!-- ACCORDION -->
 <div class="accordion">
 
 <div class="accordion-item">
 <div class="accordion-header">Why Roblox Is Up But Not Working</div>
 <div class="accordion-content">
-<p>Even if Roblox servers are online, your device or connection may be causing issues.</p>
 <ul>
 <li>Network restrictions or firewall blocking Roblox</li>
 <li>Outdated Roblox client</li>
@@ -189,40 +190,37 @@ a { color:var(--blue); }
 </div>
 
 <div class="accordion-item">
-<div class="accordion-header">Fix Roblox Not Working (Step-by-Step)</div>
+<div class="accordion-header">Fix Roblox Not Working</div>
 <div class="accordion-content">
 <ul>
-<li>Restart your device</li>
+<li>Restart device</li>
 <li>Update Roblox</li>
-<li>Clear cache/browser data</li>
+<li>Clear cache</li>
 <li>Disable VPN</li>
-<li>Check firewall settings</li>
+<li>Check firewall</li>
 <li>Try another network</li>
-<li>Test another device</li>
 </ul>
 </div>
 </div>
 
-<div class="accordion-item">
-<div class="accordion-header">Common Roblox Errors</div>
-<div class="accordion-content">
-<ul>
-<li>Error 267 – Server kick</li>
-<li>Error 277 – Connection lost</li>
-<li>Error 529 – Server issue</li>
-<li>Error 610 – Connection failed</li>
-</ul>
-</div>
+<!-- ✅ MID AD -->
+<div class="ad-unit">
+  <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-5533676923928386"
+    data-ad-slot="MIDDLE_SLOT_ID"
+    data-ad-format="auto"
+    data-full-width-responsive="true"></ins>
 </div>
 
 <div class="accordion-item">
-<div class="accordion-header">Improve Your Connection</div>
+<div class="accordion-header">Common Errors</div>
 <div class="accordion-content">
 <ul>
-<li>Restart router</li>
-<li>Use wired internet</li>
-<li>Change DNS (1.1.1.1 or 8.8.8.8)</li>
-<li>Close background apps</li>
+<li>Error 267</li>
+<li>Error 277</li>
+<li>Error 529</li>
+<li>Error 610</li>
 </ul>
 </div>
 </div>
@@ -237,6 +235,13 @@ Not affiliated with Roblox Corporation<br>
 </div>
 
 <script>
+/* ✅ ADS INIT (RUN AFTER LOAD) */
+window.addEventListener("load", () => {
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  (adsbygoogle = window.adsbygoogle || []).push({});
+});
+
+/* STATUS */
 const statusEl = document.getElementById("status");
 const lastCheckedEl = document.getElementById("lastChecked");
 
@@ -272,24 +277,24 @@ function checkStatus(){
     setStatus("down","ROBLOX MAY BE DOWN");
   };
 
-  img.src = "https://status.roblox.com/favicon.ico?cb=" + Math.random();
+  /* ✅ STRONG NO CACHE */
+  img.crossOrigin = "anonymous";
+  img.referrerPolicy = "no-referrer";
+  img.src = "https://status.roblox.com/favicon.ico?cb=" + Date.now() + "&r=" + Math.random();
 }
 
 checkStatus();
 setInterval(checkStatus, 60000);
 
-/* UPDATED ACCORDION JS (arrow rotation) */
+/* ACCORDION */
 document.querySelectorAll(".accordion-header").forEach(header => {
   header.addEventListener("click", () => {
     const content = header.nextElementSibling;
-
     header.classList.toggle("active");
 
-    if (content.style.maxHeight) {
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = content.scrollHeight + "px";
-    }
+    content.style.maxHeight = content.style.maxHeight
+      ? null
+      : content.scrollHeight + "px";
   });
 });
 </script>
