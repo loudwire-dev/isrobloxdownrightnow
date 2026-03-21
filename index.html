@@ -6,10 +6,8 @@
 <meta name="google-adsense-account" content="ca-pub-5533676923928386">
 
 <title>Is Roblox Down Right Now? | Live Status & Fix Guide</title>
-<meta name="description" content="Check Roblox server status and fix issues if Roblox is up but not working for you." />
 
 <link rel="icon" href="https://status.roblox.com/favicon.ico" />
-<link rel="preconnect" href="https://status.roblox.com">
 
 <style>
 :root {
@@ -27,7 +25,6 @@ body {
   color: var(--text);
   margin:0;
   padding:20px;
-  line-height:1.6;
 }
 
 .container {
@@ -37,14 +34,11 @@ body {
   padding:30px;
   border-radius:16px;
   border:1px solid #333;
-  box-shadow: 0 0 40px rgba(0,0,0,0.8);
 }
 
 h1 {
   text-align:center;
   color:var(--blue);
-  font-size:32px;
-  margin-bottom:10px;
 }
 
 .status {
@@ -52,46 +46,72 @@ h1 {
   font-size:64px;
   font-weight:bold;
   margin:30px 0;
-  transition:0.3s;
 }
 
+/* 🔥 STRONG GLOW */
 .up {
   color:var(--green);
-  text-shadow:0 0 15px var(--green), 0 0 30px var(--green);
+  text-shadow:
+    0 0 10px var(--green),
+    0 0 20px var(--green),
+    0 0 40px var(--green);
 }
 
 .down {
   color:var(--red);
-  text-shadow:0 0 15px var(--red), 0 0 30px var(--red);
+  text-shadow:
+    0 0 10px var(--red),
+    0 0 20px var(--red),
+    0 0 40px var(--red);
 }
 
 .meta {
   text-align:center;
-  font-size:14px;
   color:#aaa;
 }
 
-.section {
-  margin-top:40px;
+/* ACCORDION */
+.accordion {
+  margin-top:30px;
 }
 
-.section h2 {
-  color:var(--blue);
+.accordion-item {
+  border:1px solid #333;
+  border-radius:10px;
   margin-bottom:10px;
+  overflow:hidden;
 }
 
-.section ul {
+.accordion-header {
+  background:#1a1a1a;
+  padding:15px;
+  cursor:pointer;
+  font-weight:bold;
+  color:var(--blue);
+  transition:0.2s;
+}
+
+.accordion-header:hover {
+  background:#222;
+}
+
+.accordion-content {
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.3s ease;
+  padding:0 15px;
+}
+
+.accordion-content p,
+.accordion-content ul {
+  margin:15px 0;
+}
+
+.accordion-content ul {
   padding-left:20px;
 }
 
-.section li {
-  margin-bottom:8px;
-}
-
-.ad-unit {
-  margin:30px 0;
-}
-
+/* BUTTONS */
 .button {
   display:inline-block;
   padding:12px 20px;
@@ -101,23 +121,14 @@ h1 {
   margin:10px;
 }
 
-.bmc {
-  background:#ff5f5f;
-  color:#fff;
-}
+.download { background:var(--blue); color:#000; }
+.bmc { background:#ff5f5f; color:#fff; }
 
-.download {
-  background:var(--blue);
-  color:#000;
-}
-
-.center {
-  text-align:center;
-}
+.center { text-align:center; }
 
 footer {
-  margin-top:40px;
   text-align:center;
+  margin-top:40px;
   font-size:12px;
   color:#666;
 }
@@ -134,20 +145,8 @@ a { color:var(--blue); }
 
 <div class="center">
   <a href="https://www.roblox.com/download" target="_blank" class="button download">
-    ⬇ Download Roblox Client
+    ⬇ Download Roblox
   </a>
-</div>
-
-<!-- Ad -->
-<div class="ad-unit">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5533676923928386" crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-5533676923928386"
-data-ad-slot="TOP_BANNER_SLOT_ID"
-data-ad-format="auto"
-data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
 <div id="status" class="status">Checking...</div>
@@ -160,67 +159,66 @@ data-full-width-responsive="true"></ins>
   </a>
 </div>
 
-<!-- CONTENT -->
-<div class="section">
-<h2>Why Roblox Is Up But Not Working For You</h2>
-<p>
-Sometimes Roblox servers are fully operational, but your device or connection is causing issues.
-This can happen due to local network problems, outdated apps, or security settings blocking Roblox.
-</p>
-</div>
+<!-- ACCORDION CONTENT -->
+<div class="accordion">
 
-<div class="section">
-<h2>Fix Roblox Not Working (Step-by-Step)</h2>
+<div class="accordion-item">
+<div class="accordion-header">Why Roblox Is Up But Not Working</div>
+<div class="accordion-content">
+<p>Even if Roblox servers are online, your device or connection may be causing issues.</p>
 <ul>
-<li>Restart your device and relaunch Roblox</li>
-<li>Update Roblox to the latest version</li>
-<li>Clear browser cache (if using Roblox website)</li>
-<li>Disable VPN or proxy services</li>
-<li>Allow Roblox through firewall/antivirus</li>
-<li>Try a different internet connection</li>
-<li>Test on another device</li>
+<li>Network restrictions or firewall blocking Roblox</li>
+<li>Outdated Roblox client</li>
+<li>Cache or browser issues</li>
+<li>Weak Wi-Fi or high latency</li>
 </ul>
 </div>
+</div>
 
-<div class="section">
-<h2>Common Roblox Errors</h2>
+<div class="accordion-item">
+<div class="accordion-header">Fix Roblox Not Working (Step-by-Step)</div>
+<div class="accordion-content">
 <ul>
-<li><strong>Error 267:</strong> Server kick — try reinstalling</li>
-<li><strong>Error 277:</strong> Connection lost — check internet</li>
-<li><strong>Error 529:</strong> Server issue — wait it out</li>
-<li><strong>Error 610:</strong> Connection failed — switch networks</li>
+<li>Restart your device</li>
+<li>Update Roblox</li>
+<li>Clear cache/browser data</li>
+<li>Disable VPN</li>
+<li>Check firewall settings</li>
+<li>Try another network</li>
+<li>Test another device</li>
 </ul>
 </div>
+</div>
 
-<div class="section">
-<h2>Improve Your Connection</h2>
+<div class="accordion-item">
+<div class="accordion-header">Common Roblox Errors</div>
+<div class="accordion-content">
 <ul>
-<li>Restart your router</li>
-<li>Use wired internet if possible</li>
-<li>Switch DNS to 1.1.1.1 or 8.8.8.8</li>
-<li>Close background apps using bandwidth</li>
+<li>Error 267 – Server kick</li>
+<li>Error 277 – Connection lost</li>
+<li>Error 529 – Server issue</li>
+<li>Error 610 – Connection failed</li>
 </ul>
 </div>
-
-<!-- Ad -->
-<div class="ad-unit">
-<ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-5533676923928386"
-data-ad-slot="MIDDLE_SLOT_ID"
-data-ad-format="auto"
-data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<div class="section">
-<h2>Recent Checks</h2>
-<ul id="historyList"></ul>
+<div class="accordion-item">
+<div class="accordion-header">Improve Your Connection</div>
+<div class="accordion-content">
+<ul>
+<li>Restart router</li>
+<li>Use wired internet</li>
+<li>Change DNS (1.1.1.1 or 8.8.8.8)</li>
+<li>Close background apps</li>
+</ul>
+</div>
+</div>
+
 </div>
 
 <footer>
-Not affiliated with Roblox Corporation.<br>
-<a href="https://status.roblox.com" target="_blank">Official Status Page</a>
+Not affiliated with Roblox Corporation<br>
+<a href="https://status.roblox.com" target="_blank">Official Status</a>
 </footer>
 
 </div>
@@ -229,61 +227,54 @@ Not affiliated with Roblox Corporation.<br>
 const statusEl = document.getElementById("status");
 const detailsEl = document.getElementById("details");
 const lastCheckedEl = document.getElementById("lastChecked");
-const historyList = document.getElementById("historyList");
 
-function updateHistory(text){
-let history = JSON.parse(localStorage.getItem("rbxHistory")||"[]");
-history.unshift(text);
-history = history.slice(0,8);
-localStorage.setItem("rbxHistory", JSON.stringify(history));
-historyList.innerHTML = history.map(h=>`<li>${h}</li>`).join("");
-}
-
-function setStatus(type, message, detailHTML) {
-const now = new Date().toLocaleTimeString();
-statusEl.textContent = message;
-statusEl.className = "status " + type;
-detailsEl.innerHTML = detailHTML;
-lastCheckedEl.textContent = "Last checked: " + now;
-updateHistory(`${now} — ${message}`);
+function setStatus(type, message) {
+  const now = new Date().toLocaleTimeString();
+  statusEl.textContent = message;
+  statusEl.className = "status " + type;
+  lastCheckedEl.textContent = "Last checked: " + now;
 }
 
 function checkStatus(){
-let resolved = false;
-const img = new Image();
+  let resolved = false;
+  const img = new Image();
 
-const timeout = setTimeout(() => {
-if (!resolved) {
-resolved = true;
-setStatus("", "CHECK FAILED", "Network timeout — try refreshing");
-}
-}, 5000);
+  const timeout = setTimeout(() => {
+    if (!resolved) {
+      resolved = true;
+      setStatus("", "CHECK FAILED");
+    }
+  }, 5000);
 
-img.onload = () => {
-if (resolved) return;
-resolved = true;
-clearTimeout(timeout);
-setStatus("up","ROBLOX IS UP","Servers responding normally");
-};
+  img.onload = () => {
+    if (resolved) return;
+    resolved = true;
+    clearTimeout(timeout);
+    setStatus("up","ROBLOX IS UP");
+  };
 
-img.onerror = () => {
-if (resolved) return;
-resolved = true;
-clearTimeout(timeout);
-setStatus("down","ROBLOX MAY BE DOWN","Service not responding");
-};
+  img.onerror = () => {
+    if (resolved) return;
+    resolved = true;
+    clearTimeout(timeout);
+    setStatus("down","ROBLOX MAY BE DOWN");
+  };
 
-img.src = "https://status.roblox.com/favicon.ico?cb=" + Math.random();
-}
-
-function loadHistory(){
-let history = JSON.parse(localStorage.getItem("rbxHistory")||"[]");
-historyList.innerHTML = history.map(h=>`<li>${h}</li>`).join("");
+  img.src = "https://status.roblox.com/favicon.ico?cb=" + Math.random();
 }
 
-loadHistory();
 checkStatus();
 setInterval(checkStatus, 60000);
+
+/* ACCORDION LOGIC */
+document.querySelectorAll(".accordion-header").forEach(header => {
+  header.addEventListener("click", () => {
+    const content = header.nextElementSibling;
+    content.style.maxHeight = content.style.maxHeight
+      ? null
+      : content.scrollHeight + "px";
+  });
+});
 </script>
 
 </body>
