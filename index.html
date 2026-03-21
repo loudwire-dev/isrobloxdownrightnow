@@ -172,24 +172,55 @@ function updateHistory(text){
   historyList.innerHTML = history.map(h=>`<li>${h}</li>`).join("");
 }
 
-function checkStatus(){
+function setStatus(type, message, detailHTML) {
   const now = new Date().toLocaleTimeString();
+
+  statusEl.textContent = message;
+  statusEl.className = "status " + type;
+  detailsEl.innerHTML = detailHTML;
+  lastCheckedEl.textContent = "Last checked: " + now;
+
+  updateHistory(`${now} — ${message}`);
+}
+
+function checkStatus(){
+  let resolved = false;
+
   const img = new Image();
+
+  const timeout = setTimeout(() => {
+    if (!resolved) {
+      resolved = true;
+      setStatus("", "STATUS CHECK FAILED", "Network timeout — try refreshing");
+    }
+  }, 5000);
+
   img.onload = () => {
-    statusEl.textContent="ROBLOX IS UP";
-    statusEl.className="status up";
-    detailsEl.innerHTML="All servers operational • <a href='https://status.roblox.com' target='_blank'>Official Status</a>";
-    updateHistory(`${now} — All good`);
-    lastCheckedEl.textContent="Last checked: "+now;
+    if (resolved) return;
+    resolved = true;
+    clearTimeout(timeout);
+
+    setStatus(
+      "up",
+      "ROBLOX IS UP",
+      "All servers responding • <a href='https://status.roblox.com' target='_blank'>Official Status</a>"
+    );
   };
+
   img.onerror = () => {
-    statusEl.textContent="ROBLOX IS DOWN";
-    statusEl.className="status down";
-    detailsEl.innerHTML="Outage detected • <a href='https://status.roblox.com' target='_blank'>Check Official</a>";
-    updateHistory(`${now} — Issues detected`);
-    lastCheckedEl.textContent="Last checked: "+now;
+    if (resolved) return;
+    resolved = true;
+    clearTimeout(timeout);
+
+    setStatus(
+      "down",
+      "ROBLOX MAY BE DOWN",
+      "Service not responding • <a href='https://status.roblox.com' target='_blank'>Check Official</a>"
+    );
   };
-  img.src="https://status.roblox.com/favicon.ico?t="+Date.now();
+
+  // 🔥 TRUE cache-buster
+  img.src = "https://status.roblox.com/favicon.ico?cb=" + Math.random();
 }
 
 function loadHistory(){
@@ -199,7 +230,8 @@ function loadHistory(){
 
 loadHistory();
 checkStatus();
-setInterval(checkStatus,60000);
+setInterval(checkStatus, 60000);
+</script>
 </script>
 
 </body>
