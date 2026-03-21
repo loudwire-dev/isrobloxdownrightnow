@@ -233,13 +233,13 @@ Not affiliated with Roblox Corporation<br>
 </div>
 
 <script>
-/* ✅ ADS INIT (RUN AFTER LOAD) */
+// ✅ ADSENSE INIT (once)
 window.addEventListener("load", () => {
   (adsbygoogle = window.adsbygoogle || []).push({});
   (adsbygoogle = window.adsbygoogle || []).push({});
 });
 
-/* STATUS */
+// ✅ STATUS CHECKER
 const statusEl = document.getElementById("status");
 const lastCheckedEl = document.getElementById("lastChecked");
 
@@ -250,7 +250,7 @@ function setStatus(type, message) {
   lastCheckedEl.textContent = "Last checked: " + now;
 }
 
-function checkStatus(){
+function checkStatus() {
   let resolved = false;
   const img = new Image();
 
@@ -275,24 +275,24 @@ function checkStatus(){
     setStatus("down","ROBLOX MAY BE DOWN");
   };
 
-  /* ✅ STRONG NO CACHE */
-  img.crossOrigin = "anonymous";
-  img.referrerPolicy = "no-referrer";
+  // ✅ SIMPLE NO-CACHE: works reliably
   img.src = "https://status.roblox.com/favicon.ico?t=" + Date.now();
 }
 
 checkStatus();
 setInterval(checkStatus, 60000);
 
-/* ACCORDION */
+// ✅ ACCORDION WITH ARROW
 document.querySelectorAll(".accordion-header").forEach(header => {
   header.addEventListener("click", () => {
     const content = header.nextElementSibling;
     header.classList.toggle("active");
 
-    content.style.maxHeight = content.style.maxHeight
-      ? null
-      : content.scrollHeight + "px";
+    if (content.style.maxHeight) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
   });
 });
 </script>
