@@ -48,7 +48,6 @@ h1 {
   margin:30px 0;
 }
 
-/* 🔥 STRONG GLOW */
 .up {
   color:var(--green);
   text-shadow:
@@ -82,7 +81,11 @@ h1 {
   overflow:hidden;
 }
 
+/* UPDATED HEADER WITH ARROW */
 .accordion-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   background:#1a1a1a;
   padding:15px;
   cursor:pointer;
@@ -90,25 +93,21 @@ h1 {
   color:var(--blue);
   transition:0.2s;
 }
-  .accordion-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.accordion-header::after {
-  content: "▼";
-  font-size: 14px;
-  transition: transform 0.3s ease;
-}
-
-/* Rotate when open */
-.accordion-header.active::after {
-  transform: rotate(180deg);
-}
 
 .accordion-header:hover {
   background:#222;
+}
+
+/* ARROW */
+.accordion-header::after {
+  content:"▼";
+  font-size:14px;
+  transition:transform 0.3s ease;
+}
+
+/* ROTATE WHEN OPEN */
+.accordion-header.active::after {
+  transform:rotate(180deg);
 }
 
 .accordion-content {
@@ -164,21 +163,7 @@ a { color:var(--blue); }
     ⬇ Download Roblox
   </a>
 </div>
-<div class="ad-unit">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5533676923928386"
-crossorigin="anonymous"></script>
 
-<ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-5533676923928386"
-data-ad-slot="TOP_BANNER_SLOT_ID"
-data-ad-format="auto"
-data-full-width-responsive="true"></ins>
-
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
 <div id="status" class="status">Checking...</div>
 <div id="details" class="meta"></div>
 <div id="lastChecked" class="meta"></div>
@@ -245,22 +230,6 @@ data-full-width-responsive="true"></ins>
 </div>
 
 </div>
-  <div class="ad-unit">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5533676923928386"
-crossorigin="anonymous"></script>
-
-<ins class="adsbygoogle"
-style="display:block"
-data-ad-client="ca-pub-5533676923928386"
-data-ad-slot="TOP_BANNER_SLOT_ID"
-data-ad-format="auto"
-data-full-width-responsive="true"></ins>
-
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
-  
 
 <footer>
 Not affiliated with Roblox Corporation<br>
@@ -271,7 +240,6 @@ Not affiliated with Roblox Corporation<br>
 
 <script>
 const statusEl = document.getElementById("status");
-const detailsEl = document.getElementById("details");
 const lastCheckedEl = document.getElementById("lastChecked");
 
 function setStatus(type, message) {
@@ -312,15 +280,13 @@ function checkStatus(){
 checkStatus();
 setInterval(checkStatus, 60000);
 
-/* ACCORDION LOGIC */
+/* UPDATED ACCORDION JS (arrow rotation) */
 document.querySelectorAll(".accordion-header").forEach(header => {
   header.addEventListener("click", () => {
     const content = header.nextElementSibling;
 
-    // Toggle active class (for arrow rotation)
     header.classList.toggle("active");
 
-    // Toggle content
     if (content.style.maxHeight) {
       content.style.maxHeight = null;
     } else {
