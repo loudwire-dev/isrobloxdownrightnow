@@ -239,7 +239,7 @@ window.addEventListener("load", () => {
   (adsbygoogle = window.adsbygoogle || []).push({});
 });
 
-// ✅ STATUS CHECKER
+// ✅ STATUS CHECKER (STABLE, WORKING)
 const statusEl = document.getElementById("status");
 const lastCheckedEl = document.getElementById("lastChecked");
 
@@ -251,38 +251,25 @@ function setStatus(type, message) {
 }
 
 function checkStatus() {
-  let resolved = false;
   const img = new Image();
 
-  const timeout = setTimeout(() => {
-    if (!resolved) {
-      resolved = true;
-      setStatus("", "CHECK FAILED");
-    }
-  }, 5000);
-
   img.onload = () => {
-    if (resolved) return;
-    resolved = true;
-    clearTimeout(timeout);
-    setStatus("up","ROBLOX IS UP");
+    setStatus("up", "ROBLOX IS UP");
   };
 
   img.onerror = () => {
-    if (resolved) return;
-    resolved = true;
-    clearTimeout(timeout);
-    setStatus("down","ROBLOX MAY BE DOWN");
+    setStatus("down", "ROBLOX MAY BE DOWN");
   };
 
-  // ✅ SIMPLE NO-CACHE: works reliably
+  // ✅ SIMPLE NO-CACHE, THIS IS THE WORKING LINE
   img.src = "https://status.roblox.com/favicon.ico?t=" + Date.now();
 }
 
+// Run immediately and then every 60 seconds
 checkStatus();
 setInterval(checkStatus, 60000);
 
-// ✅ ACCORDION WITH ARROW
+// ✅ ACCORDION WITH ARROWS
 document.querySelectorAll(".accordion-header").forEach(header => {
   header.addEventListener("click", () => {
     const content = header.nextElementSibling;
